@@ -57,6 +57,7 @@ This will be a walkthrough on how to create a map from scratch.
 
 -   If you need to load the map again, use `/load_map (name)`
 -   It's advised to keep map appearance simple, and to avoid using too much special, or ramp bricks in the play area.
+-   Another advice is to stick to completely sealed maps, creeper will grow outside of the play area if you let it.
 
 4. Place creeper spawns using bricks with an interact component attached to it, that shows the message "creeper_spawn" when clicked.
 
