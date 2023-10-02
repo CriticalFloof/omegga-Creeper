@@ -1,9 +1,7 @@
-import { Brick, User, Vector, WriteSaveObject } from "omegga";
+import { Brick, WriteSaveObject } from "omegga";
 import BrickLoader from "src/lib/bricks/brick_loader";
 import { vec3IsEquals, vec3Mod, vec3Mul, vec3TrueMod } from "src/lib/vector_operation";
-import HierarchalAstar from "src/lib/world/hierarchal_astar";
 import Spatial, { OccupancyType } from "src/lib/world/spatial";
-import { Runtime } from "src/runtime/main";
 
 export default class MapCompiler {
     public static run(read_save_data: WriteSaveObject): Promise<{ save: WriteSaveObject; spatial: Spatial }> {

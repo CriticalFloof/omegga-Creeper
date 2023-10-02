@@ -1,6 +1,5 @@
 import { IPlayerPositions, OmeggaPlayer, Vector } from "omegga";
 import EventChecker from "src/lib/event_checker";
-import CreeperSwarm from "src/lib/game_loop/creeper/creeper_swarm_base";
 import GamemodeRuntime from "src/lib/game_loop/minigame/gamemode_runtime";
 import PlayerHandler from "src/lib/game_loop/players/player_handler";
 import { vec3Add, vec3Sub } from "src/lib/vector_operation";

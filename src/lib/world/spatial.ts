@@ -1,5 +1,5 @@
 import { Brick, Vector } from "omegga";
-import { vec3Add, vec3Ceil, vec3Div, vec3Floor, vec3IsEquals, vec3Mod, vec3Mul, vec3Sub, vec3TrueMod } from "../vector_operation";
+import { vec3Add, vec3Div, vec3Floor, vec3Mul, vec3Sub, vec3TrueMod } from "../vector_operation";
 
 export type Chunk = { [relative_position: string]: number };
 

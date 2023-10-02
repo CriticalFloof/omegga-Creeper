@@ -4,7 +4,6 @@ import CreeperSwarm from "../creeper/creeper_swarm_base";
 import BrickLoader from "src/lib/bricks/brick_loader";
 import PlayerHandler from "../players/player_handler";
 import { ILogMinigame } from "omegga";
-import CreeperSwarmRandom from "../creeper/creeper_swarm_types/creeper_swarm_random";
 import CreeperSwarmTracker from "../creeper/creeper_swarm_types/creeper_swarm_tracker";
 
 export default class GamemodeRuntime {

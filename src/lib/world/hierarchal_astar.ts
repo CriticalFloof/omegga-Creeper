@@ -1,9 +1,7 @@
-import { Brick, Vector, WriteSaveObject } from "omegga";
-import { vec3Add, vec3Div, vec3IsEquals, vec3Mul, vec3Sub } from "../vector_operation";
+import { Vector } from "omegga";
+import { vec3Add, vec3IsEquals, vec3Mul, vec3Sub } from "../vector_operation";
 import Spatial, { OccupancyType } from "./spatial";
-import { Runtime } from "src/runtime/main";
 import BrickLoader from "../bricks/brick_loader";
-import CreeperSwarm from "../game_loop/creeper/creeper_swarm_base";
 
 type CellNode = {
     fScore: number;

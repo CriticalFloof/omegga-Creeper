@@ -3,8 +3,6 @@ import GamemodeLoader from "../minigame/gamemode_loader";
 import MapManager from "src/lib/map/map_manager";
 import path from "path";
 import SpatialManager from "src/lib/world/spatial_manager";
-import Spatial from "src/lib/world/spatial";
-import { Vector } from "omegga";
 
 export default class MapLoader {
     public static clear() {

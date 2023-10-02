@@ -3,7 +3,7 @@ import { VotingHandler } from "src/lib/game_loop/voting";
 import { Runtime } from "../main";
 import GameController from "src/lib/game_loop/game_initialization/game_control";
 
-new Command("vote", TrustLevel.Restricted, (speaker: string, voteNumberStr: string) => {
+new Command("vote", TrustLevel.Default, (speaker: string, voteNumberStr: string) => {
     if (!GameController.isEnabled()) {
         Runtime.omegga.whisper(speaker, `The game is not running.`);
         return;

@@ -1,11 +1,9 @@
-import { IPlayerPositions, OmeggaLike, PC, PS } from "omegga";
+import { OmeggaLike, PC, PS } from "omegga";
 import { Config, Storage } from "omegga.plugin";
 import path from "path";
 import EventEmitter from "events";
-
 import Command from "src/lib/commands";
 import MapManager from "src/lib/map/map_manager";
-
 import CommandInitalizer from "./commands";
 import PluginEventEmitInitalizer from "./event_emitters";
 import GamemodeManager from "src/lib/game_loop/minigame/gamemode_manager";

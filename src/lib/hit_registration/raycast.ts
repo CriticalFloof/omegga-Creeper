@@ -1,6 +1,6 @@
 import { Vector } from "omegga";
 import Spatial from "../world/spatial";
-import { vec3Add, vec3Div, vec3Floor, vec3Mod, vec3Sub } from "../vector_operation";
+import { vec3Div, vec3Floor, vec3Mod } from "../vector_operation";
 
 export default class Raycast {
     public static spatialDDARaycast(start_point_parameter: Vector, rotation_deg: Vector, max_distance: number, spatial: Spatial) {

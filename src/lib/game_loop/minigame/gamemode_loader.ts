@@ -1,6 +1,6 @@
 import { Runtime } from "src/runtime/main";
 import GamemodeRuntime from "./gamemode_runtime";
-import Spatial, { OccupancyType } from "src/lib/world/spatial";
+import Spatial from "src/lib/world/spatial";
 
 export default class GamemodeLoader {
     public static async clear() {

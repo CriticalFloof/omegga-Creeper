@@ -1,5 +1,5 @@
 import { vec3Abs, vec3Add, vec3IsEquals, vec3IsGreaterThan, vec3IsLessThan, vec3Mul, vec3Sub } from "src/lib/vector_operation";
-import Spatial, { AbsoluteSpatial, OccupancyType } from "src/lib/world/spatial";
+import Spatial, { OccupancyType } from "src/lib/world/spatial";
 import CreeperSwarm from "./creeper_swarm_base";
 import { Vector } from "omegga";
 

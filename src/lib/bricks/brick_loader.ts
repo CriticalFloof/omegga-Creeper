@@ -1,8 +1,7 @@
-import { Brick, User, Vector, WriteSaveObject } from "omegga";
+import { Brick, Vector, WriteSaveObject } from "omegga";
 import Spatial from "../world/spatial";
 import OmeggaImprovements from "../local_omegga";
 import { Runtime } from "src/runtime/main";
-import { vec3Add, vec3Mul, vec3Sub } from "../vector_operation";
 
 export default class BrickLoader {
     public static writeSaveObjectStandard: Partial<WriteSaveObject> = {

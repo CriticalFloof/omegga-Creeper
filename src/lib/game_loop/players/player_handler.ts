@@ -1,10 +1,8 @@
 import { IPlayerPositions, OmeggaPlayer, Vector } from "omegga";
 import Raycast from "src/lib/hit_registration/raycast";
 import { Runtime } from "src/runtime/main";
-import CreeperSwarm from "../creeper/creeper_swarm_base";
 import { OccupancyType } from "src/lib/world/spatial";
 import GamemodeRuntime from "../minigame/gamemode_runtime";
-import BrickLoader from "src/lib/bricks/brick_loader";
 import { vec3Add, vec3Sub } from "src/lib/vector_operation";
 
 export default class PlayerHandler {
