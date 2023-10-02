@@ -48,14 +48,22 @@ This will be a walkthrough on how to create a map from scratch.
 
 1. Make sure the map editor is enabled.
 2. Type `/create_map` inside the game chat.
-   2a. The plugin will ask which gamemode to use, since there's only one gamemode, respond with `/respond creeper`
-   2b. Then you will be asked what name to give the map. respond with `/respond (name)` where (name) is your map's name.
-   2c. The map is now created and contains a placeholder build and environment.
+
+-   The plugin will ask which gamemode to use, since there's only one gamemode, respond with `/respond creeper`
+-   Then you will be asked what name to give the map. respond with `/respond (name)` where (name) is your map's name.
+-   The map is now created and contains a placeholder build and environment.
+
 3. Build your map and set the preferred environment, use `/save_map (name)` to save the map.
-   3a. If you need to load the map again, use `/load_map (name)`
-   3b. It's advised to keep map appearance simple, and to avoid using too much special, or ramp bricks in the play area.
+
+-   If you need to load the map again, use `/load_map (name)`
+-   It's advised to keep map appearance simple, and to avoid using too much special, or ramp bricks in the play area.
+
 4. Place creeper spawns using bricks with an interact component attached to it, that shows the message "creeper_spawn" when clicked.
-   4a. Make sure that all creeper spawns are the SAME SIZE and are ALIGNED to eachother.
+
+-   Make sure that all creeper spawns are the SAME SIZE and are ALIGNED to eachother.
+
 5. Save and Compile the map with `/build_map (name)` (Or only compile the map with `/compile_map (name)`)
-   5a. Bigger maps will take much more time to compile and load during play, so avoid letting your bricks take up unnessesary space.
+
+-   Bigger maps will take much more time to compile and load during play, so avoid letting your bricks take up unnessesary space.
+
 6. Thats it, If your map compiled correctly, you should be able to start the game and the map will appear in the map rotation automatically!
