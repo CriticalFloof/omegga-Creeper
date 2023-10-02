@@ -74,6 +74,7 @@ This will be a walkthrough on how to create a map from scratch.
 6. Thats it, If your map compiled correctly, you should be able to start the game and the map will appear in the map rotation automatically!
 
 You can also rename maps with `/rename_map (name)` and will be asked to set the new gamemode and name, remember to use `/respond` to talk to the plugin!
+<br>
 Finally, you can delete maps with `/delete_map (name)`. You will be prompted if you're sure, use `/yes` to confirm or `/no` to cancel.
 
 ## Trusted Users
