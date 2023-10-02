@@ -2,10 +2,8 @@ import { Runtime } from "src/runtime/main";
 import { Deferred } from "./deferred";
 
 export enum TrustLevel {
-    "Restricted",
     "Default",
     "Trusted",
-    "Developer",
 }
 
 export default class Command {

@@ -73,3 +73,8 @@ This will be a walkthrough on how to create a map from scratch.
 
 You can also rename maps with `/rename_map (name)` and will be asked to set the new gamemode and name, remember to use `/respond` to talk to the plugin!
 Finally, you can delete maps with `/delete_map (name)`. You will be prompted if you're sure, use `/yes` to confirm or `/no` to cancel.
+
+## Trusted Users
+
+You can give other players full control over the plugin with the trusted config
+[<img src="https://cdn.discordapp.com/attachments/945066695997931520/1158427359066726410/image.png" width="512"/>]
