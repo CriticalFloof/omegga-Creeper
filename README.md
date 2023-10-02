@@ -1,19 +1,6 @@
-<!--
-
-When uploading your plugin to github/gitlab
-start your repo name with "omegga-"
-
-example: https://github.com/CriticalFloof/omegga-Creeper
-
-Your plugin will be installed via omegga install gh:CriticalFloof/Creeper
-
--->
-
 # Creeper
 
-A Strategic FPS Gamemode for Brickadia powered by [omegga](https://github.com/brickadia-community/omegga).
-
-## Objective
+A PvE Gamemode for Brickadia powered by [omegga](https://github.com/brickadia-community/omegga).
 
 Players are spawned into a map where self replicating bricks, called Creeper, attempt to spread across the map and destroy all players.
 
@@ -25,9 +12,9 @@ The players are tasked with the goal of surviving the timer, or eradicating the 
 
 ..and That's it!
 
-## Plugin Modes
+## Plugin Modes & Usage
 
-### Playing
+### Play
 
 The plugin is configured for immediate play.
 
@@ -48,7 +35,7 @@ You can also switch edit mode on from the config panel inside the Omegga Web UI.
 
 ## Map Creation
 
-This will be a walkthrough on how to create a map from scratch.
+This will be a basic walkthrough on how to create a map from scratch.
 
 1. Make sure the map editor is enabled.
 2. Type `/create_map` inside the game chat.
