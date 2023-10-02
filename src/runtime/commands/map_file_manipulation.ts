@@ -21,7 +21,7 @@ new Command("toggle_map_edit", TrustLevel.Trusted, (speaker: string) => {
     }
 });
 
-new Command("map_create", TrustLevel.Trusted, async (speaker: string) => {
+new Command("create_map", TrustLevel.Trusted, async (speaker: string) => {
     async function query<T>(question: string[], single_return: boolean = true): Promise<T> {
         return new Promise((resolve, reject) => {
             Runtime.omegga.whisper(speaker, ...question);
@@ -96,7 +96,7 @@ new Command("map_create", TrustLevel.Trusted, async (speaker: string) => {
     await MapManager.saveMap(`${gamemodeResponse}_${mapNameResponse}`);
 });
 
-new Command("map_save", TrustLevel.Trusted, async (speaker: string, map_name: string) => {
+new Command("save_map", TrustLevel.Trusted, async (speaker: string, map_name: string) => {
     if (!MapEditor.isEnabled()) {
         Runtime.omegga.whisper(speaker, `Map Editor is not enabled, to enable it, type: /toggle_map_edit`);
         return;
@@ -128,7 +128,7 @@ new Command("map_save", TrustLevel.Trusted, async (speaker: string, map_name: st
     Command.defer(speaker, defer);
 });
 
-new Command("map_compile", TrustLevel.Trusted, async (speaker: string, map_name: string) => {
+new Command("compile_map", TrustLevel.Trusted, async (speaker: string, map_name: string) => {
     if (!MapEditor.isEnabled()) {
         Runtime.omegga.whisper(speaker, `Map Editor is not enabled, to enable it, type: /toggle_map_edit`);
         return;
@@ -154,7 +154,7 @@ new Command("map_compile", TrustLevel.Trusted, async (speaker: string, map_name:
         });
 });
 
-new Command("map_build", TrustLevel.Trusted, async (speaker: string, map_name: string) => {
+new Command("build_map", TrustLevel.Trusted, async (speaker: string, map_name: string) => {
     if (!MapEditor.isEnabled()) {
         Runtime.omegga.whisper(speaker, `Map Editor is not enabled, to enable it, type: /toggle_map_edit`);
         return;
@@ -198,7 +198,7 @@ new Command("map_build", TrustLevel.Trusted, async (speaker: string, map_name: s
     Command.defer(speaker, defer);
 });
 
-new Command("map_load", TrustLevel.Trusted, async (speaker: string, map_name: string) => {
+new Command("load_map", TrustLevel.Trusted, async (speaker: string, map_name: string) => {
     if (!MapEditor.isEnabled()) {
         Runtime.omegga.whisper(speaker, `Map Editor is not enabled, to enable it, type: /toggle_map_edit`);
         return;
@@ -219,7 +219,7 @@ new Command("map_load", TrustLevel.Trusted, async (speaker: string, map_name: st
     MapEditor.loadMap(map_name);
 });
 
-new Command("map_rename", TrustLevel.Trusted, async (speaker: string, old_name: string) => {
+new Command("rename_map", TrustLevel.Trusted, async (speaker: string, old_name: string) => {
     async function query<T>(question: string[], single_return: boolean = true): Promise<T> {
         return new Promise((resolve, reject) => {
             Runtime.omegga.whisper(speaker, ...question);
@@ -302,7 +302,7 @@ new Command("map_rename", TrustLevel.Trusted, async (speaker: string, old_name: 
     MapEditor.renameMap(old_name, `${gamemodeResponse}_${mapNameResponse}`);
 });
 
-new Command("map_delete", TrustLevel.Trusted, async (speaker: string, map_name: string) => {
+new Command("delete_map", TrustLevel.Trusted, async (speaker: string, map_name: string) => {
     if (!MapEditor.isEnabled()) {
         Runtime.omegga.whisper(speaker, `Map Editor is not enabled, to enable it, type: /toggle_map_edit`);
         return;
