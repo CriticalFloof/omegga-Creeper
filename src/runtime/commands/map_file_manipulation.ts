@@ -254,7 +254,7 @@ new Command("rename_map", TrustLevel.Trusted, async (speaker: string, old_name: 
         return validMapNameEnforcer(responce);
     }
 
-    const gamemodes = await GamemodeManager.listGamemodeInBrickadia();
+    const gamemodes = await GamemodeManager.listGamemodeInPlugin();
     const existingMaps = await MapManager.listMapsInBrickadia();
 
     if (!MapEditor.isEnabled()) {

@@ -11,7 +11,7 @@ Your plugin will be installed via omegga install gh:CriticalFloof/Creeper
 
 # Creeper
 
-A Strategic Gamemode for Brickadia powered by [omegga](https://github.com/brickadia-community/omegga).
+A Strategic FPS Gamemode for Brickadia powered by [omegga](https://github.com/brickadia-community/omegga).
 
 ## Objective
 
@@ -33,6 +33,8 @@ The plugin is configured for immediate play.
 
 Upon start, a map vote lasting 15 seconds will occur, most popular map will be chosen and that map will be played for the configured amount of time.
 (TODO: insert screenshot of plugin config showing this.)
+
+Players are given a knife, to destroy the creeper, look at it and swing your knife.
 
 ### Map Editor
 
@@ -68,3 +70,6 @@ This will be a walkthrough on how to create a map from scratch.
 -   Bigger maps will take much more time to compile and load during play, so avoid letting your bricks take up unnessesary space.
 
 6. Thats it, If your map compiled correctly, you should be able to start the game and the map will appear in the map rotation automatically!
+
+You can also rename maps with `/rename_map (name)` and will be asked to set the new gamemode and name, remember to use `/respond` to talk to the plugin!
+Finally, you can delete maps with `/delete_map (name)`. You will be prompted if you're sure, use `/yes` to confirm or `/no` to cancel.
