@@ -49,7 +49,7 @@ export default class GamemodeRuntime {
     }
 
     public static forceWin(win_message: string) {
-        Runtime.omegga.broadcast(win_message);
+        Runtime.omegga.broadcast(`<size="10"><color="00FFFF">\></></> ${win_message}`);
         Runtime.omegga.getMinigames().then((minigames) => {
             for (let i = 0; i < minigames.length; i++) {
                 const minigame = minigames[i];
@@ -104,7 +104,7 @@ export default class GamemodeRuntime {
 
     private static roundChange(): void {
         GamemodeRuntime.roundEnded = false;
-        Runtime.omegga.broadcast("The creeper will grow in 3 seconds!");
+        Runtime.omegga.broadcast(`<size="10"><color="00FFFF">\></></>The creeper will grow in 3 seconds!`);
         Runtime.events.off("minigame_round_change", GamemodeRuntime.roundChange);
         setTimeout(() => {
             GamemodeRuntime.creeper.unpause();

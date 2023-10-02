@@ -27,7 +27,7 @@ export default class Command {
             let player = Runtime.omegga.getPlayer(speaker);
 
             if (!(player.isHost() || player.getRoles().includes(Runtime.config["Trusted Role"]))) {
-                Runtime.omegga.whisper(speaker, "You do not have permission to use this command.");
+                Runtime.omegga.whisper(speaker, `<size="10"><color="00FFFF">\></></> You do not have permission to use this command.`);
                 return;
             }
 

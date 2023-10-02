@@ -8,16 +8,16 @@ import GamemodeManager from "src/lib/game_loop/minigame/gamemode_manager";
 
 new Command("toggle_map_edit", TrustLevel.Trusted, (speaker: string) => {
     if (GameController.isEnabled()) {
-        Runtime.omegga.whisper(speaker, "Game is currently running. Disable it to use the map editor.");
+        Runtime.omegga.whisper(speaker, `<size="10"><color="00FFFF">\></></> Game is currently running. Disable it to use the map editor.`);
         return;
     }
 
     if (MapEditor.isEnabled()) {
         Runtime.stateMachine.transition("STOP_EDIT");
-        Runtime.omegga.whisper(speaker, "Map Editor has been disabled");
+        Runtime.omegga.whisper(speaker, `<size="10"><color="00FFFF">\></></> Map Editor has been disabled`);
     } else {
         Runtime.stateMachine.transition("EDIT");
-        Runtime.omegga.whisper(speaker, "Map Editor has been enabled");
+        Runtime.omegga.whisper(speaker, `<size="10"><color="00FFFF">\></></> Map Editor has been enabled`);
     }
 });
 
@@ -57,7 +57,7 @@ new Command("create_map", TrustLevel.Trusted, async (speaker: string) => {
     }
 
     if (!MapEditor.isEnabled()) {
-        Runtime.omegga.whisper(speaker, `Map Editor is not enabled, to enable it, type: /toggle_map_edit`);
+        Runtime.omegga.whisper(speaker, `<size="10"><color="00FFFF">\></></> Map Editor is not enabled, to enable it, type: /toggle_map_edit`);
         return;
     }
 
@@ -71,7 +71,7 @@ new Command("create_map", TrustLevel.Trusted, async (speaker: string) => {
     try {
         gamemodeResponse = await validGamemodeEnforcer(await query<string>([`What gamemode do you want the map to be?`, ...gamemodes]));
     } catch {
-        Runtime.omegga.whisper(speaker, `Cancelled map creation.`);
+        Runtime.omegga.whisper(speaker, `<size="10"><color="00FFFF">\></></> Cancelled map creation.`);
         return;
     }
 
@@ -85,12 +85,12 @@ new Command("create_map", TrustLevel.Trusted, async (speaker: string) => {
     try {
         mapNameResponse = await validMapNameEnforcer(await query<string>([`What name is your map?`]));
     } catch {
-        Runtime.omegga.whisper(speaker, `Cancelled map creation.`);
+        Runtime.omegga.whisper(speaker, `<size="10"><color="00FFFF">\></></> Cancelled map creation.`);
         return;
     }
 
     //Finished
-    Runtime.omegga.whisper(speaker, `Created map ''${gamemodeResponse}_${mapNameResponse}''!`);
+    Runtime.omegga.whisper(speaker, `<size="10"><color="00FFFF">\></></> Created map ''${gamemodeResponse}_${mapNameResponse}''!`);
 
     await MapManager.createMap(`${gamemodeResponse}_${mapNameResponse}`);
     await MapManager.saveMap(`${gamemodeResponse}_${mapNameResponse}`);
@@ -98,31 +98,31 @@ new Command("create_map", TrustLevel.Trusted, async (speaker: string) => {
 
 new Command("save_map", TrustLevel.Trusted, async (speaker: string, map_name: string) => {
     if (!MapEditor.isEnabled()) {
-        Runtime.omegga.whisper(speaker, `Map Editor is not enabled, to enable it, type: /toggle_map_edit`);
+        Runtime.omegga.whisper(speaker, `<size="10"><color="00FFFF">\></></> Map Editor is not enabled, to enable it, type: /toggle_map_edit`);
         return;
     }
 
     const existingMaps = await MapManager.listMapsInBrickadia();
 
     if (map_name == undefined) {
-        Runtime.omegga.whisper(speaker, `Please enter a map name!`, ...existingMaps);
+        Runtime.omegga.whisper(speaker, `<size="10"><color="00FFFF">\></></> Please enter a map name!`, ...existingMaps);
         return;
     }
     if (!existingMaps.includes(map_name)) {
-        Runtime.omegga.whisper(speaker, `Please enter an existing map name!`, ...existingMaps);
+        Runtime.omegga.whisper(speaker, `<size="10"><color="00FFFF">\></></> Please enter an existing map name!`, ...existingMaps);
         return;
     }
 
     let defer = new Deferred();
 
-    Runtime.omegga.whisper(speaker, `Do you want to overwrite map ''${map_name}''?`);
+    Runtime.omegga.whisper(speaker, `<size="10"><color="00FFFF">\></></> Do you want to overwrite map ''${map_name}''?`);
     defer
         .then(async () => {
             await MapEditor.saveMap(map_name);
-            Runtime.omegga.whisper(speaker, `Saved map ''${map_name}''.`);
+            Runtime.omegga.whisper(speaker, `<size="10"><color="00FFFF">\></></> Saved map ''${map_name}''.`);
         })
         .catch(() => {
-            Runtime.omegga.whisper(speaker, `Cancelled map save.`);
+            Runtime.omegga.whisper(speaker, `<size="10"><color="00FFFF">\></></> Cancelled map save.`);
         });
 
     Command.defer(speaker, defer);
@@ -130,54 +130,54 @@ new Command("save_map", TrustLevel.Trusted, async (speaker: string, map_name: st
 
 new Command("compile_map", TrustLevel.Trusted, async (speaker: string, map_name: string) => {
     if (!MapEditor.isEnabled()) {
-        Runtime.omegga.whisper(speaker, `Map Editor is not enabled, to enable it, type: /toggle_map_edit`);
+        Runtime.omegga.whisper(speaker, `<size="10"><color="00FFFF">\></></> Map Editor is not enabled, to enable it, type: /toggle_map_edit`);
         return;
     }
 
     const existingMaps = await MapManager.listMapsInBrickadia();
 
     if (map_name == undefined) {
-        Runtime.omegga.whisper(speaker, `Please enter a map name!`, ...existingMaps);
+        Runtime.omegga.whisper(speaker, `<size="10"><color="00FFFF">\></></> Please enter a map name!`, ...existingMaps);
         return;
     }
     if (!existingMaps.includes(map_name)) {
-        Runtime.omegga.whisper(speaker, `Please enter an existing map name!`, ...existingMaps);
+        Runtime.omegga.whisper(speaker, `<size="10"><color="00FFFF">\></></> Please enter an existing map name!`, ...existingMaps);
         return;
     }
 
     MapEditor.compileMap(map_name)
         .then(() => {
-            Runtime.omegga.whisper(speaker, `Compiled map ''${map_name}''.`);
+            Runtime.omegga.whisper(speaker, `<size="10"><color="00FFFF">\></></> Compiled map ''${map_name}''.`);
         })
         .catch((reason) => {
-            Runtime.omegga.whisper(speaker, `Error Compiling map: ''${map_name}''.`, `reason: ${reason}`);
+            Runtime.omegga.whisper(speaker, `<size="10"><color="00FFFF">\></></> Error Compiling map: ''${map_name}''.`, `reason: ${reason}`);
         });
 });
 
 new Command("build_map", TrustLevel.Trusted, async (speaker: string, map_name: string) => {
     if (!MapEditor.isEnabled()) {
-        Runtime.omegga.whisper(speaker, `Map Editor is not enabled, to enable it, type: /toggle_map_edit`);
+        Runtime.omegga.whisper(speaker, `<size="10"><color="00FFFF">\></></> Map Editor is not enabled, to enable it, type: /toggle_map_edit`);
         return;
     }
 
     const existingMaps = await MapManager.listMapsInBrickadia();
 
     if (map_name == undefined) {
-        Runtime.omegga.whisper(speaker, `Please enter a map name!`, ...existingMaps);
+        Runtime.omegga.whisper(speaker, `<size="10"><color="00FFFF">\></></> Please enter a map name!`, ...existingMaps);
         return;
     }
     if (!existingMaps.includes(map_name)) {
-        Runtime.omegga.whisper(speaker, `Please enter an existing map name!`, ...existingMaps);
+        Runtime.omegga.whisper(speaker, `<size="10"><color="00FFFF">\></></> Please enter an existing map name!`, ...existingMaps);
         return;
     }
 
     let defer = new Deferred();
 
-    Runtime.omegga.whisper(speaker, `Do you want to overwrite map ''${map_name}''?`);
+    Runtime.omegga.whisper(speaker, `<size="10"><color="00FFFF">\></></> Do you want to overwrite map ''${map_name}''?`);
     defer
         .then(async () => {
             await MapEditor.saveMap(map_name);
-            Runtime.omegga.whisper(speaker, `Saved map ''${map_name}''.`);
+            Runtime.omegga.whisper(speaker, `<size="10"><color="00FFFF">\></></> Saved map ''${map_name}''.`);
 
             await new Promise<void>((r) => {
                 setTimeout(r, 50);
@@ -185,14 +185,14 @@ new Command("build_map", TrustLevel.Trusted, async (speaker: string, map_name: s
 
             MapEditor.compileMap(map_name)
                 .then(() => {
-                    Runtime.omegga.whisper(speaker, `Compiled map ''${map_name}''.`);
+                    Runtime.omegga.whisper(speaker, `<size="10"><color="00FFFF">\></></> Compiled map ''${map_name}''.`);
                 })
                 .catch((reason) => {
-                    Runtime.omegga.whisper(speaker, `Error Compiling map: ''${map_name}''.`, `reason: ${reason}`);
+                    Runtime.omegga.whisper(speaker, `<size="10"><color="00FFFF">\></></> Error Compiling map: ''${map_name}''.`, `reason: ${reason}`);
                 });
         })
         .catch(() => {
-            Runtime.omegga.whisper(speaker, `Cancelled map build.`);
+            Runtime.omegga.whisper(speaker, `<size="10"><color="00FFFF">\></></> Cancelled map build.`);
         });
 
     Command.defer(speaker, defer);
@@ -200,22 +200,22 @@ new Command("build_map", TrustLevel.Trusted, async (speaker: string, map_name: s
 
 new Command("load_map", TrustLevel.Trusted, async (speaker: string, map_name: string) => {
     if (!MapEditor.isEnabled()) {
-        Runtime.omegga.whisper(speaker, `Map Editor is not enabled, to enable it, type: /toggle_map_edit`);
+        Runtime.omegga.whisper(speaker, `<size="10"><color="00FFFF">\></></> Map Editor is not enabled, to enable it, type: /toggle_map_edit`);
         return;
     }
 
     const existingMaps = await MapManager.listMapsInBrickadia();
 
     if (map_name == undefined) {
-        Runtime.omegga.whisper(speaker, `Please enter a map name!`, ...existingMaps);
+        Runtime.omegga.whisper(speaker, `<size="10"><color="00FFFF">\></></> Please enter a map name!`, ...existingMaps);
         return;
     }
     if (!existingMaps.includes(map_name)) {
-        Runtime.omegga.whisper(speaker, `Please enter an existing map name!`, ...existingMaps);
+        Runtime.omegga.whisper(speaker, `<size="10"><color="00FFFF">\></></> Please enter an existing map name!`, ...existingMaps);
         return;
     }
 
-    Runtime.omegga.whisper(speaker, `Loading map ''${map_name}''!`);
+    Runtime.omegga.whisper(speaker, `<size="10"><color="00FFFF">\></></> Loading map ''${map_name}''!`);
     MapEditor.loadMap(map_name);
 });
 
@@ -258,17 +258,17 @@ new Command("rename_map", TrustLevel.Trusted, async (speaker: string, old_name: 
     const existingMaps = await MapManager.listMapsInBrickadia();
 
     if (!MapEditor.isEnabled()) {
-        Runtime.omegga.whisper(speaker, `Map Editor is not enabled, to enable it, type: /toggle_map_edit`);
+        Runtime.omegga.whisper(speaker, `<size="10"><color="00FFFF">\></></> Map Editor is not enabled, to enable it, type: /toggle_map_edit`);
         return;
     }
 
     if (old_name == undefined) {
-        Runtime.omegga.whisper(speaker, `Please enter the map name you want to change!`, ...existingMaps);
+        Runtime.omegga.whisper(speaker, `<size="10"><color="00FFFF">\></></> Please enter the map name you want to change!`, ...existingMaps);
         return;
     }
 
     if (!existingMaps.includes(old_name)) {
-        Runtime.omegga.whisper(speaker, `Can't rename ''${old_name}'' as it doesn't exist`, ...existingMaps);
+        Runtime.omegga.whisper(speaker, `<size="10"><color="00FFFF">\></></> Can't rename ''${old_name}'' as it doesn't exist`, ...existingMaps);
         return;
     }
 
@@ -279,7 +279,7 @@ new Command("rename_map", TrustLevel.Trusted, async (speaker: string, old_name: 
     try {
         gamemodeResponse = await validGamemodeEnforcer(await query<string>([`What gamemode is the map?`, ...gamemodes]));
     } catch {
-        Runtime.omegga.whisper(speaker, `Cancelled map renaming.`);
+        Runtime.omegga.whisper(speaker, `<size="10"><color="00FFFF">\></></> Cancelled map renaming.`);
         return;
     }
 
@@ -293,42 +293,45 @@ new Command("rename_map", TrustLevel.Trusted, async (speaker: string, old_name: 
     try {
         mapNameResponse = await validMapNameEnforcer(await query<string>([`What will you name the map?`]));
     } catch {
-        Runtime.omegga.whisper(speaker, `Cancelled map renaming.`);
+        Runtime.omegga.whisper(speaker, `<size="10"><color="00FFFF">\></></> Cancelled map renaming.`);
         return;
     }
 
     //Finished
-    Runtime.omegga.whisper(speaker, `Renamed map from ''${old_name}'' to ''${gamemodeResponse}_${mapNameResponse}''!`);
+    Runtime.omegga.whisper(
+        speaker,
+        `<size="10"><color="00FFFF">\></></> Renamed map from ''${old_name}'' to ''${gamemodeResponse}_${mapNameResponse}''!`
+    );
     MapEditor.renameMap(old_name, `${gamemodeResponse}_${mapNameResponse}`);
 });
 
 new Command("delete_map", TrustLevel.Trusted, async (speaker: string, map_name: string) => {
     if (!MapEditor.isEnabled()) {
-        Runtime.omegga.whisper(speaker, `Map Editor is not enabled, to enable it, type: /toggle_map_edit`);
+        Runtime.omegga.whisper(speaker, `<size="10"><color="00FFFF">\></></> Map Editor is not enabled, to enable it, type: /toggle_map_edit`);
         return;
     }
 
     const existingMaps = await MapManager.listMapsInBrickadia();
 
     if (map_name == undefined) {
-        Runtime.omegga.whisper(speaker, `Please enter a map name!`, ...existingMaps);
+        Runtime.omegga.whisper(speaker, `<size="10"><color="00FFFF">\></></> Please enter a map name!`, ...existingMaps);
         return;
     }
     if (!existingMaps.includes(map_name)) {
-        Runtime.omegga.whisper(speaker, `Please enter an existing map name!`, ...existingMaps);
+        Runtime.omegga.whisper(speaker, `<size="10"><color="00FFFF">\></></> Please enter an existing map name!`, ...existingMaps);
         return;
     }
 
     let defer = new Deferred();
 
-    Runtime.omegga.whisper(speaker, `Do you want to permanently delete map ''${map_name}''?`);
+    Runtime.omegga.whisper(speaker, `<size="10"><color="00FFFF">\></></> Do you want to permanently delete map ''${map_name}''?`);
     defer
         .then(async () => {
             await MapEditor.deleteMap(map_name);
-            Runtime.omegga.whisper(speaker, `Deleted map ''${map_name}''.`);
+            Runtime.omegga.whisper(speaker, `<size="10"><color="00FFFF">\></></> Deleted map ''${map_name}''.`);
         })
         .catch(() => {
-            Runtime.omegga.whisper(speaker, `Cancelled map deletion.`);
+            Runtime.omegga.whisper(speaker, `<size="10"><color="00FFFF">\></></> Cancelled map deletion.`);
         });
 
     Command.defer(speaker, defer);

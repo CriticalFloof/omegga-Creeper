@@ -2,6 +2,8 @@
 
 A PvE Gamemode for Brickadia powered by [omegga](https://github.com/brickadia-community/omegga).
 
+### Gamemode Overview
+
 Players are spawned into a map where self replicating bricks, called Creeper, attempt to spread across the map and destroy all players.
 
 The players are tasked with the goal of surviving the timer, or eradicating the creeper.
@@ -16,7 +18,7 @@ The players are tasked with the goal of surviving the timer, or eradicating the 
 
 ### Play
 
-The plugin is configured for immediate play.
+The plugin is configured for immediate play, and comes packaged with one default map.
 
 Upon start, a map vote lasting 15 seconds will occur, most popular map will be chosen and that map will be played for the configured amount of time.
 <br><br>

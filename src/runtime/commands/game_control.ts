@@ -5,16 +5,16 @@ import MapEditor from "src/lib/edit_mode/map_editor";
 
 new Command("toggle_game", TrustLevel.Trusted, () => {
     if (MapEditor.isEnabled()) {
-        Runtime.omegga.broadcast("Map Editor is currently running. Disable it to play the game.");
+        Runtime.omegga.broadcast(`<size="10"><color="00FFFF">\></></> Map Editor is currently running. Disable it to play the game.`);
         return;
     }
     if (GameController.isEnabled()) {
         //disable
-        Runtime.omegga.broadcast("Stopping Game.");
+        Runtime.omegga.broadcast(`<size="10"><color="00FFFF">\></></>Stopping Game.`);
         Runtime.stateMachine.transition("STOP_PLAY");
     } else {
         //play
-        Runtime.omegga.broadcast("Starting Game!");
+        Runtime.omegga.broadcast(`<size="10"><color="00FFFF">\></></>Starting Game!`);
         Runtime.stateMachine.transition("PLAY");
     }
 });

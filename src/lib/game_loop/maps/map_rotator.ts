@@ -58,6 +58,7 @@ export default class MapRotator {
             chosenMaps.push("extend_map");
         }
 
+        Runtime.omegga.broadcast(`<color="CC2222"><size="28">Vote for the next map!</></>`);
         VotingHandler.initiateVote(chosenMaps, 15000)
             .then((winners) => {
                 if (!MapRotator.isEnabled()) {
@@ -66,7 +67,7 @@ export default class MapRotator {
 
                 // Nobody votes
                 if (winners.length === 0) {
-                    Runtime.omegga.broadcast(`No maps were voted for. Choosing random...`);
+                    Runtime.omegga.broadcast(`<size="10"><color="00FFFF">\></></> No maps were voted for. Choosing random...`);
                     MapRotator.switchMap(chosenMaps[Math.trunc(Math.random() * chosenMaps.length)]);
                     return;
                 }
@@ -79,7 +80,7 @@ export default class MapRotator {
 
                 // A tie occured, force a random pick.
                 if (winners.length > 1) {
-                    Runtime.omegga.broadcast(`${winners.length} maps tied! Choosing random...`);
+                    Runtime.omegga.broadcast(`<size="10"><color="00FFFF">\></></> ${winners.length} maps tied! Choosing random...`);
                     MapRotator.switchMap(chosenMaps[Math.trunc(Math.random() * chosenMaps.length)]);
                     return;
                 }
@@ -99,11 +100,13 @@ export default class MapRotator {
         if (map_name === "extend_map") {
             this.mapEndTime += Runtime.config["Map Time Length"] * 60000;
             this.enableRoundListenerNearMapEnd();
-            Runtime.omegga.broadcast(`Extending map time for another ${Runtime.config["Map Time Length"]} minutes.`);
+            Runtime.omegga.broadcast(
+                `<size="10"><color="00FFFF">\></></> Extending map time for another ${Runtime.config["Map Time Length"]} minutes.`
+            );
             return;
         }
 
-        Runtime.omegga.broadcast(`Switching map to: "${map_name}"`);
+        Runtime.omegga.broadcast(`<size="10"><color="00FFFF">\></></> Switching map to: "${map_name}"`);
         MapLoader.load(map_name);
 
         this.currentMap = map_name;

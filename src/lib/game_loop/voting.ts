@@ -61,7 +61,7 @@ export class VotingHandler {
 
             for (let i = 0; i < choices.length; i++) {
                 const choice = choices[i];
-                Runtime.omegga.broadcast(`/Vote ${i + 1} | ${choice}`);
+                Runtime.omegga.broadcast(`<size="10"><color="00FFFF">\></></> /Vote ${i + 1} | ${choice}`);
             }
 
             setTimeout(() => {
