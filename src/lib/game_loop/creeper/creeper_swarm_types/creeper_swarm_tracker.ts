@@ -14,10 +14,11 @@ export default class CreeperSwarmTracker extends CreeperSwarm {
 
     private isResting: boolean = false;
     private lastDeathTime: number = Date.now();
+    private lastPlayerAttackTime: number = Date.now();
     private destroyedCreeper: number = 0;
 
-    public override start(map_spatial: Spatial) {
-        super.start(map_spatial);
+    public override start() {
+        super.start();
         Runtime.events.on("player_touch_creeper", this.playerDeath);
     }
 
@@ -36,6 +37,7 @@ export default class CreeperSwarmTracker extends CreeperSwarm {
 
         this.isResting = false;
         this.lastDeathTime = Date.now();
+        this.lastPlayerAttackTime = Date.now();
         this.destroyedCreeper = 0;
     }
 
@@ -50,9 +52,9 @@ export default class CreeperSwarmTracker extends CreeperSwarm {
 
         if (this.currentTick % 10 === 0) {
             if (Date.now() < this.startTime + 1000 * 15) {
-                this.energy += 100 * Runtime.omegga.players.length * Math.min(this.rage, 1) + 150;
+                this.energy += 100 * Runtime.omegga.players.length * Math.max(this.rage, 1) + 150;
             } else {
-                this.energy += 15 * Runtime.omegga.players.length * Math.min(this.rage, 1) + 15;
+                this.energy += 15 * Runtime.omegga.players.length * Math.max(this.rage, 1) + 15;
             }
         }
 
@@ -100,6 +102,7 @@ export default class CreeperSwarmTracker extends CreeperSwarm {
 
     public override hit() {
         this.destroyedCreeper += 1;
+        this.lastPlayerAttackTime = Date.now();
     }
 
     private playerDeath() {
@@ -113,17 +116,16 @@ export default class CreeperSwarmTracker extends CreeperSwarm {
 
     private updateRage() {
         //Rage is based on how much time has passed without a player death, how much creeper has been destroyed, how much creeper is on the map, and stick grenade stuns
-        //Players death time scales from 0 to (playercount / 2) //done
+        //Players death time scales up continuously //done
         //Creeper destruction by spray scales from 0 to playercount //done
         //Creeper scarcity scales from 0 to 1 //done
         //Stick grenade stuns reduce by 0.02 per creeper destroyed and has no limit, but continuously diminishes. // planned
         let rage = 1;
 
-        let timeSinceLastDeathInfluence = Math.min(
-            (Date.now() - this.lastDeathTime) / (180000 / Runtime.omegga.players.length),
-            Runtime.omegga.players.length
-        );
+        let timeSinceLastDeathInfluence = (Date.now() - this.lastDeathTime) / (240000 / Runtime.omegga.players.length)
         rage += timeSinceLastDeathInfluence;
+        let timeSinceLastPlayerAttackInfluence = (Date.now() - this.lastPlayerAttackTime) / (10000 / Runtime.omegga.players.length)
+        rage += timeSinceLastPlayerAttackInfluence;
         let scarcityInfluence = 1 - Math.min(this.size / 200, 1);
         rage += scarcityInfluence;
         let destructionInfluence = Math.min((this.destroyedCreeper / 25) * Runtime.omegga.players.length, Runtime.omegga.players.length) / 2;

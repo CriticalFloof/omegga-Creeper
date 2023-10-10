@@ -1,5 +1,5 @@
 import { Brick, Vector, WriteSaveObject } from "omegga";
-import Spatial from "../world/spatial";
+import Spatial, { OccupancyType } from "../world/spatial";
 import OmeggaImprovements from "../local_omegga";
 import { Runtime } from "src/runtime/main";
 
@@ -109,10 +109,19 @@ export default class BrickLoader {
         let bricks: Brick[] = [];
         for (let i = 0; i < absoluteSpatialKeys.length; i++) {
             const position = Spatial.getVectorFromKey(absoluteSpatialKeys[i]);
-            bricks.push({
-                ...brick,
-                position: spatial.absoluteToWorldPosition(position),
-            });
+            if(spatial.getTypeAtAbsolutePosition(position) === OccupancyType.Creeper){
+                bricks.push({
+                    ...brick,
+                    color: [255, 100, 255, 255],
+                    position: spatial.absoluteToWorldPosition(position),
+                });
+            } else {
+                bricks.push({
+                    ...brick,
+                    position: spatial.absoluteToWorldPosition(position),
+                });
+            }
+            
         }
 
         if (bricks.length === 0) return;

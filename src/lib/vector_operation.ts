@@ -71,3 +71,11 @@ export function vec3Floor(vec1: Vector): Vector {
 export function vec3Abs(vec1: Vector): Vector {
     return [Math.abs(vec1[0]), Math.abs(vec1[1]), Math.abs(vec1[2])];
 }
+
+export function vec3Min(vec1: Vector, vec2: Vector): Vector {
+    return [Math.min(vec1[0], vec2[0]), Math.min(vec1[1], vec2[1]), Math.min(vec1[2], vec2[2])]
+}
+
+export function vec3Max(vec1: Vector, vec2: Vector): Vector {
+    return [Math.max(vec1[0], vec2[0]), Math.max(vec1[1], vec2[1]), Math.max(vec1[2], vec2[2])]
+}

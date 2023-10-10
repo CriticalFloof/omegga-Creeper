@@ -21,10 +21,10 @@ export default class GamemodeRuntime {
         this.stop();
 
         this.runningMinigame = minigame_instance;
-        this.creeper = this.createCreeper();
+        this.creeper = this.createCreeper(map_spatial);
 
         PlayerHandler.start();
-        this.creeper.start(map_spatial);
+        this.creeper.start();
 
         Runtime.events.on("minigame_round_end", this.roundEnd);
 
@@ -58,6 +58,8 @@ export default class GamemodeRuntime {
                 }
             }
             this.roundEnd();
+        }).catch((err)=>{
+            console.warn(err)
         });
     }
 
@@ -73,6 +75,8 @@ export default class GamemodeRuntime {
                 }
             }
             this.roundEnd();
+        }).catch((err)=>{
+            console.warn(err)
         });
     }
 
@@ -123,7 +127,7 @@ export default class GamemodeRuntime {
         BrickLoader.loadSpatial(creeperSpatial, this.creeper.getCreeperBrick());
     }
 
-    private static createCreeper(): CreeperSwarm {
-        return new CreeperSwarmTracker();
+    private static createCreeper(map_spatial: Spatial): CreeperSwarm {
+        return new CreeperSwarmTracker(map_spatial);
     }
 }

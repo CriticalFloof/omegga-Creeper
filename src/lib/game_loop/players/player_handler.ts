@@ -6,7 +6,8 @@ import GamemodeRuntime from "../minigame/gamemode_runtime";
 import { vec3Add, vec3Sub } from "src/lib/vector_operation";
 
 export default class PlayerHandler {
-    public static readonly playerSize: Vector = [12, 12, 24];
+    private static hitboxPadding: Vector = [2, 2, 4]
+    public static readonly playerSize: Vector = [12 - this.hitboxPadding[0], 12 - this.hitboxPadding[1], 24 - this.hitboxPadding[2]];
 
     private static playerPositionIntervalId: NodeJS.Timer;
     private static playerPositions: IPlayerPositions = [];
@@ -25,6 +26,8 @@ export default class PlayerHandler {
         this.playerPositionIntervalId = setInterval(() => {
             Runtime.omegga.getAllPlayerPositions().then((v) => {
                 PlayerHandler.playerPositions = v;
+            }).catch(()=>{
+                console.warn("Position Update timed out.")
             });
         }, 300);
 

@@ -46,7 +46,7 @@ export class VotingHandler {
     }
 
     public static async initiateVote(choices: string[], ms: number): Promise<string[]> {
-        let votePromise: Promise<string[]> = new Promise(async (res, rej) => {
+        return new Promise<string[]>(async (res, rej) => {
             this.endVotePromise = res;
 
             if (this.currentVotingChoices.length !== 0) {
@@ -55,7 +55,7 @@ export class VotingHandler {
             }
 
             this.currentVotingChoices = choices;
-            this.votes = Array.from({ length: choices.length }, (v) => {
+            this.votes = Array.from({ length: choices.length }, () => {
                 return [];
             });
 
@@ -68,8 +68,6 @@ export class VotingHandler {
                 res(this.getVoteResults());
             }, ms);
         });
-
-        return votePromise;
     }
 
     public static endVote(overrule?: number): Promise<void> {
@@ -78,7 +76,7 @@ export class VotingHandler {
                 VotingHandler.votes = Array.from({ length: this.currentVotingChoices.length }, () => {
                     return [];
                 });
-                await VotingHandler.castVote(".", overrule - 1).catch((err) => {
+                await VotingHandler.castVote("", overrule - 1).catch((err) => {
                     rej(err);
                     return;
                 });

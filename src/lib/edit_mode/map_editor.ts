@@ -58,8 +58,8 @@ export default class MapEditor {
                     MapManager.compileMap(map_name);
                     resolve();
                 })
-                .catch((r) => {
-                    reject(r);
+                .catch((err) => {
+                    reject(err);
                 });
         });
     }

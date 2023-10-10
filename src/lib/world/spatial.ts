@@ -1,5 +1,5 @@
 import { Brick, Vector } from "omegga";
-import { vec3Add, vec3Div, vec3Floor, vec3Mul, vec3Sub, vec3TrueMod } from "../vector_operation";
+import { vec3Add, vec3Ceil, vec3Div, vec3Floor, vec3Max, vec3Mul, vec3Sub, vec3TrueMod } from "../vector_operation";
 
 export type Chunk = { [relative_position: string]: number };
 
@@ -130,18 +130,15 @@ export default class Spatial {
             }
         }
 
-        const brickCornerMax = vec3Add(brick.position, vec3Sub(brickSize, 0.1));
-        const brickCornerMin = vec3Sub(brick.position, brickSize);
+        const spatialPositionMax = this.worldToAbsolutePosition(vec3Add(vec3Add(brick.position, vec3Sub(brickSize, 0.1)), this.brick_size))
+        const spatialPositionMin = this.worldToAbsolutePosition(vec3Add(vec3Sub(brick.position, vec3Sub(brickSize, 0.1)), this.brick_size))
 
-        const positionMax = vec3Floor(vec3Div(brickCornerMax, vec3Mul(this.brick_size, 2)));
-        const positionMin = vec3Floor(vec3Div(brickCornerMin, vec3Mul(this.brick_size, 2)));
-
-        const positionIterations = vec3Sub(positionMax, positionMin);
+        const positionIterations = vec3Sub(spatialPositionMax, spatialPositionMin);
 
         for (let x = 0; x <= positionIterations[0]; x++) {
             for (let y = 0; y <= positionIterations[1]; y++) {
                 for (let z = 0; z <= positionIterations[2]; z++) {
-                    this.setTypeAtAbsolutePosition(vec3Add(positionMin, [x, y, z]), type);
+                    this.setTypeAtAbsolutePosition(vec3Add(spatialPositionMin, [x, y, z]), type);
                 }
             }
         }

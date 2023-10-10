@@ -6,18 +6,26 @@ import { Runtime } from "src/runtime/main";
 import GamemodeRuntime from "../minigame/gamemode_runtime";
 
 export default class CreeperSwarm {
-    protected currentTick: number = 0;
-    protected isEnabled: boolean = false;
-    private creeperTickIntervalId: NodeJS.Timer = null;
-
-    protected mapSpatial: Spatial;
-    protected startingPositions: AbsoluteSpatial;
-    protected currentPositions: AbsoluteSpatial;
 
     public currentSurfacePositions: AbsoluteSpatial;
 
+    protected currentTick: number = 0;
+    protected isEnabled: boolean = false;
+    protected mapSpatial: Spatial;
+    protected currentPositions: AbsoluteSpatial;
+
+    private creeperTickIntervalId: NodeJS.Timer = null;
+    private readonly startingPositions: AbsoluteSpatial;
+
     //For Rendering Optimization
     private changedPositions: AbsoluteSpatial;
+
+    constructor(map_spatial: Spatial) {
+        // Copying the data
+        this.mapSpatial = Spatial.fromSpatial(map_spatial.brick_size, map_spatial.brick_offset, map_spatial.chunks);
+
+        this.startingPositions = map_spatial.getAllPositionsOfType(OccupancyType.Creeper);
+    }
 
     public eatCreeperChangedSpatial(): Spatial {
         const spatial = Spatial.fromAbsoluteSpatial(this.mapSpatial.brick_size, this.mapSpatial.brick_offset, this.changedPositions);
@@ -42,14 +50,9 @@ export default class CreeperSwarm {
         return brick;
     }
 
-    public start(map_spatial: Spatial) {
+    public start() {
         this.stop();
         this.isEnabled = true;
-
-        const totalPositionData = map_spatial.getAllPositions();
-        this.mapSpatial = Spatial.fromAbsoluteSpatial(map_spatial.brick_size, map_spatial.brick_offset, totalPositionData);
-
-        this.startingPositions = map_spatial.getAllPositionsOfType(OccupancyType.Creeper);
 
         this.currentPositions = JSON.parse(JSON.stringify(this.startingPositions));
         this.currentSurfacePositions = JSON.parse(JSON.stringify(this.startingPositions));
@@ -143,7 +146,6 @@ export default class CreeperSwarm {
             return true;
         }
         GamemodeRuntime.forceWin("All creeper has been eradicated, congratulations!");
-        // GamemodeRuntime.forceLoss();
         return true;
     }
 }
