@@ -83,6 +83,8 @@ export default class PlayerHandler {
     public static async swing(player_positions: IPlayerPositions) {
         if (!GamemodeRuntime.isPlaying()) return;
 
+        const SWINGRANGE = 12
+
         for (let i = 0; i < player_positions.length; i++) {
             const player = player_positions[i];
             if (player.isDead) continue;
@@ -113,7 +115,7 @@ export default class PlayerHandler {
             const positions = Raycast.spatialDDARaycast(
                 vec3Sub(cameraPosition as Vector, gridOffset),
                 [parseFloat(x), parseFloat(y), parseFloat(z)],
-                12,
+                SWINGRANGE,
                 spatial
             );
 
