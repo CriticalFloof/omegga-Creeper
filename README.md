@@ -21,8 +21,6 @@ The players are tasked with the goal of surviving the timer, or eradicating the 
 The plugin is configured for immediate play, and comes packaged with one default map.
 
 Upon start, a map vote lasting 15 seconds will occur, most popular map will be chosen and that map will be played for the configured amount of time.
-<br><br>
-<img src="https://cdn.discordapp.com/attachments/945066695997931520/1158428090347835493/image.png" />
 
 Players are given a knife, to destroy the creeper, look at it and swing your knife.
 
@@ -32,8 +30,7 @@ This plugin also has in-game support for map creation.
 
 This can be toggled immediately, in-game by first stopping the game with `/toggle_game` and enabling the map editor with `/toggle_map_edit`
 You can also switch edit mode on from the config panel inside the Omegga Web UI. (Remember to wait for the config to save before reloading.)
-<br><br>
-<img src="https://cdn.discordapp.com/attachments/945066695997931520/1158428341922185336/image.png" />
+
 
 ## Map Creation
 
@@ -69,5 +66,3 @@ Finally, you can delete maps with `/delete_map (name)`. You will be prompted if 
 ## Trusted Users
 
 You can give other players full control over the plugin with the trusted config
-<br><br>
-<img src="https://cdn.discordapp.com/attachments/945066695997931520/1158427359066726410/image.png" />
