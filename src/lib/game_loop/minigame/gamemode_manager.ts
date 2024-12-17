@@ -17,6 +17,11 @@ export default class GamemodeManager {
     }
 
     public static async listGamemodeInPlugin() {
+
+        if(!fs.existsSync(this.getGamemodePath())) {
+            fs.mkdirSync(this.getGamemodePath(), {recursive: true})
+        }
+
         let result = await fsp.readdir(this.getGamemodePath()).catch((err) => {
             console.warn(err);
         });
@@ -24,7 +29,14 @@ export default class GamemodeManager {
     }
 
     public static async listGamemodeInBrickadia() {
-        let result = (await fsp.readdir(path.join(Runtime.omegga.presetPath, `/Minigame`)).catch((err) => {
+
+        const minigamePath = path.join(Runtime.omegga.presetPath, `/Minigame`)
+
+        if(!fs.existsSync(minigamePath)) {
+            fs.mkdirSync(minigamePath, {recursive: true})
+        }
+
+        let result = (await fsp.readdir(minigamePath).catch((err) => {
             console.warn(err);
         })) as string[];
         if (result == undefined) result = [];
